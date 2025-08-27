@@ -1,4 +1,21 @@
+import { useDispatch, useSelector } from "react-redux";
+import { BACK_URL } from "../utils/constants";
+import { deleteUser } from "../utils/userSlice";
+
 const Navbar = () => {
+  const userData = useSelector((store) => store.user);
+  const dispatch=useDispatch()
+  const handleLogout=async()=>{
+    console.log("handlelogout")
+    try {
+    const userOut= await axios.post(BACK_URL + "/logout",{withCredentials:true})
+    dispatch(deleteUser(userOut))
+
+    } catch (error) {
+      throw new Error("Error"+ error.message)
+    }
+  }
+  
   return (
     <>
       <div className="navbar bg-base-300 shadow-sm">
@@ -11,24 +28,30 @@ const Navbar = () => {
             placeholder="Search"
             className="input input-bordered w-24 md:w-auto"
           />
+         {!userData?(<p className="flex justify-center items-center">Welcome Dear</p>):(<p className="flex justify-center items-center">Welcome, {userData.firstName}</p>)}
           <div className="dropdown dropdown-end mx-2.5">
             <div
               tabIndex={0}
               role="button"
               className="btn btn-ghost btn-circle avatar"
             >
-              <div className="w-10 rounded-full">
-                <img
+              <div className="w-10 rounded-full bg-gray-200">
+                {!userData?( <img
                   alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  src="https://cdn-icons-png.freepik.com/512/21/21104.png"
+                />):( <img
+                  alt="Tailwind CSS Navbar component"
+                  src={userData.photoUrl}
                 />
+                )}
+               
               </div>
             </div>
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              <li>
+              <li onClick={handleLogout}>
                 <a className="justify-between">
                   Profile
                   <span className="badge">New</span>
