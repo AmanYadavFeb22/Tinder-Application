@@ -75,7 +75,7 @@ const Navbar = () => {
                 <a>Settings</a>
               </li>
               <li onClick={handleLogout}>
-                <a>Logout</a>
+                <a href="/login">Logout</a>
               </li>
             </ul>
           </div>
