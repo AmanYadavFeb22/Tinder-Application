@@ -1,26 +1,30 @@
 import { useDispatch, useSelector } from "react-redux";
 import { BACK_URL } from "../utils/constants";
 import { deleteUser } from "../utils/userSlice";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate=useNavigate();
   const userData = useSelector((store) => store.user);
   const dispatch=useDispatch()
   const handleLogout=async()=>{
-    console.log("handlelogout")
     try {
-    const userOut= await axios.post(BACK_URL + "/logout",{withCredentials:true})
+    const userOut= await axios.post(BACK_URL + "/logout")
     dispatch(deleteUser(userOut))
+    navigate("/login")
 
     } catch (error) {
-      throw new Error("Error"+ error.message)
+      throw new Error("Error logging out"+ error.message)
     }
   }
+
   
   return (
     <>
       <div className="navbar bg-base-300 shadow-sm">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">Tinder🔥</a>
+          <Link to="/" className="btn btn-ghost text-xl" >Tinder🔥</Link>
         </div>
         <div className="flex gap-2">
           <input
@@ -28,7 +32,7 @@ const Navbar = () => {
             placeholder="Search"
             className="input input-bordered w-24 md:w-auto"
           />
-         {!userData?(<p className="flex justify-center items-center">Welcome Dear</p>):(<p className="flex justify-center items-center">Welcome, {userData.firstName}</p>)}
+         {!userData?(<p className="flex justify-center items-center">Welcome People</p>):(<p className="flex justify-center items-center">Welcome, {userData.firstName}</p>)}
           <div className="dropdown dropdown-end mx-2.5">
             <div
               tabIndex={0}
@@ -51,16 +55,17 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              <li onClick={handleLogout}>
-                <a className="justify-between">
+              <li>
+                <Link to="/profile" className="justify-between">
                   Profile
                   <span className="badge">New</span>
-                </a>
-              </li>
+                </Link>
+                </li>
+             
               <li>
                 <a>Settings</a>
               </li>
-              <li>
+              <li onClick={handleLogout}>
                 <a>Logout</a>
               </li>
             </ul>
