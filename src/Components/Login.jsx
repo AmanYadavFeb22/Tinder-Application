@@ -8,6 +8,7 @@ import { BACK_URL } from "../utils/constants";
 const Login = () => {
   const [emailId, setemailId] = useState("aman@gmail.com");
   const [password, setpassword] = useState("Aman@123");
+  const[error,seterror]=useState()
   const dispatch=useDispatch()
   const navigate=useNavigate()
 
@@ -21,7 +22,8 @@ const Login = () => {
     navigate('/feed')
     
     } catch (error) {
-        throw new Error("Please Signup then login!")
+      seterror(error.response.data)
+        throw new Error("Invalid Credentials" + error.response.data)
     }
    
   };
@@ -84,6 +86,7 @@ const Login = () => {
               }}
             />
           </label>
+          <p className="text-red-400">{error}</p>
           <div className="card-actions">
             <button className="btn btn-primary mt-2 " onClick={handleLogin}>
               Login

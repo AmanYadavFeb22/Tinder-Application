@@ -17,7 +17,7 @@ const Body = () => {
       const data = await axios.get(BACK_URL + "/profile/view", {
         withCredentials: true,
       });
-      console.log(data.data);
+      
       dispatch(addUser(data.data));
     } catch (error) {
       if (error.status === 401) {
