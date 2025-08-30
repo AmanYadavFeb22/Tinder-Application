@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {addUser} from "../utils/userSlice"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BACK_URL } from "../utils/constants";
 
 const Login = () => {
@@ -86,7 +86,9 @@ const Login = () => {
               }}
             />
           </label>
+          
           <p className="text-red-400">{error}</p>
+          <p>New User? <span className="font-bold hover:underline cursor-pointer"> <Link to="/signup">Signup Here</Link></span></p>
           <div className="card-actions">
             <button className="btn btn-primary mt-2 " onClick={handleLogin}>
               Login

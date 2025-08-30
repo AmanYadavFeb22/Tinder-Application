@@ -14,7 +14,6 @@ const Request = () => {
       const request = await axios.get(BACK_URL + "/user/request/received", {
         withCredentials: true,
       });
-      console.log(request.data.data);
       dispatch(addRequest(request.data.data));
       
     } catch (error) {
