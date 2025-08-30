@@ -23,9 +23,9 @@ const Navbar = () => {
     <>
       <div className="navbar bg-base-300 shadow-sm">
         <div className="flex-1">
-          <Link to="/" className="btn btn-ghost text-xl">
+          <a href="/feed" className="btn btn-ghost text-xl">
             Tinder🔥
-          </Link>
+          </a>
         </div>
         <div className="flex gap-2">
           <input
@@ -72,7 +72,7 @@ const Navbar = () => {
               </li>
 
               <li>
-                <a>Settings</a>
+                <Link to="/connections">Connections</Link>
               </li>
               <li onClick={handleLogout}>
                 <a href="/login">Logout</a>

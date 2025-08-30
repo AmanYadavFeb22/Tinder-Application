@@ -10,7 +10,8 @@ const UserCard = ({user}) => {
         />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">{firstName}</h2>
+        <h2 className="card-title">{firstName + " " + lastName}</h2>
+        { age && Gender && <p>{age + " | " + Gender}</p>}
         <p>{About}</p>
         <div className="card-actions justify-between mt-1">
           <button className="btn btn-primary text-sm font-bold">

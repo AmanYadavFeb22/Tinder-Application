@@ -9,7 +9,6 @@ import UserCard from "./UserCard";
 const Feed = () => {
     const[feed,setfeed]=useState([])
   const userFeed = useSelector((store) => store.feed);
-  console.log(feed)
   const dispatch = useDispatch();
   const getfeed = async () => {
     try {
