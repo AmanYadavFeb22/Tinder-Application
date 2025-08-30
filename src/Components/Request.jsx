@@ -32,13 +32,14 @@ const Request = () => {
   }
 
 console.log(requestReceive[0].fromUserId)
+console.log(requestReceive[0]._id)
 
   return (
     <div className="flex justify-center text-center">
       <div>
         <h1 className="font-bold text-2xl my-8">Your Connection🤝</h1>
         {requestReceive.map((req=>{
-            return  <ConnectionCard user={req.fromUserId} showbtn={()=>setshowbtn(true)} />
+            return  <ConnectionCard user={req.fromUserId} id={req._id} showbtn={()=>setshowbtn(true)} />
 
         
         }))   }
