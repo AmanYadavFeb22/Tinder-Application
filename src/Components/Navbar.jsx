@@ -34,10 +34,10 @@ const Navbar = () => {
             className="input input-bordered w-24 md:w-auto"
           />
           {!userData ? (
-            <p className="flex justify-center items-center">Welcome People</p>
+            <p className="flex justify-center items-center">Welcome,  <span className="font-bold text-orange-400">  People</span></p>
           ) : (
             <p className="flex justify-center items-center">
-              Welcome, {userData.firstName}
+              Welcome, <span className="font-bold text-orange-400">{userData.firstName}</span>
             </p>
           )}
           <div className="dropdown dropdown-end mx-2.5">

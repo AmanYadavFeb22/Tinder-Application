@@ -30,13 +30,12 @@ const Request = () => {
     return  <h1 className="font-bold text-2xl text-center my-8">No Connection Request Found</h1>
   }
 
-console.log(requestReceive[0].fromUserId)
-console.log(requestReceive[0]._id)
+
 
   return (
     <div className="flex justify-center text-center">
       <div>
-        <h1 className="font-bold text-2xl my-8">Your Connection🤝</h1>
+        <h1 className="font-bold text-2xl my-8">Your have following Requests🤝</h1>
         {requestReceive.map((req=>{
             return  <ConnectionCard user={req.fromUserId} id={req._id} showbtn={()=>setshowbtn(true)} />
 

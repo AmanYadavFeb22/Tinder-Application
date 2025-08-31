@@ -34,7 +34,7 @@ const Connection = () => {
   return (
     <div className="flex justify-center text-center">
       <div>
-        <h1 className="font-bold text-2xl my-8">Your Connection🤝</h1>
+        <h1 className="font-bold text-2xl my-8">Your Connections🤝</h1>
         {connections.map((con=>{
             return  <ConnectionCard user={con}/>
         }))   }
